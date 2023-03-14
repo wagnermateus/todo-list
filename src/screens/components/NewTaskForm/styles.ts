@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
+    width: 271,
     backgroundColor: "#262626",
     height: "100%",
     marginRight: 4,
