@@ -8,10 +8,10 @@ export function NewTaskForm() {
       <TextInput
         style={styles.input}
         placeholder="Adicione uma nova tarefa"
-        placeholderTextColor="#F2F2F2"
+        placeholderTextColor="#808080"
       />
       <TouchableOpacity style={styles.button}>
-        <AntDesign name="pluscircleo" size={24} color="white" />
+        <AntDesign name="pluscircleo" size={16} color="white" />
       </TouchableOpacity>
     </View>
   );

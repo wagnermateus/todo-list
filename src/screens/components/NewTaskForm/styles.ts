@@ -12,10 +12,12 @@ export const styles = StyleSheet.create({
   input: {
     width: 271,
     backgroundColor: "#262626",
+    color: "#F2F2F2",
     height: "100%",
     marginRight: 4,
     padding: 16,
     borderRadius: 6,
+    fontSize: 16,
   },
   button: {
     width: 52,
