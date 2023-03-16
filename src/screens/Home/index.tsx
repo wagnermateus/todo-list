@@ -12,13 +12,13 @@ type Tasks = {
 };
 
 export function Home() {
-  const [tasks, settasks] = useState<Tasks[]>([]);
+  const [tasks, setTasks] = useState<Tasks[]>([]);
   function handleCreateTask(description: string) {
     const taskAlreadyExists = tasks.find(
       (task) => task.description === description
     );
     if (!taskAlreadyExists) {
-      settasks((prevState) => [...prevState, { description, status: "todo" }]);
+      setTasks((prevState) => [...prevState, { description, status: "todo" }]);
     } else {
       Alert.alert(
         "Tareja já existe !",
@@ -26,6 +26,24 @@ export function Home() {
       );
     }
   }
+
+  function handleTaskStatus(description: string) {
+    const newTasksArry = tasks.map((task) => {
+      if (task.description === description) {
+        if (task.status === "todo") task.status = "done";
+        else {
+          task.status = "todo";
+        }
+        return task;
+      }
+      return task;
+    });
+    setTasks(newTasksArry);
+  }
+
+  const completedTasksCounter = tasks.filter(
+    (task) => task.status === "done"
+  ).length;
 
   return (
     <View style={styles.container}>
@@ -35,13 +53,13 @@ export function Home() {
         <View style={styles.taskInfocontent}>
           <Text style={styles.tasksCreatedText}>Criadas </Text>
           <View style={styles.tasksCounterContainer}>
-            <Text style={styles.tasksCounter}>5</Text>
+            <Text style={styles.tasksCounter}>{tasks.length}</Text>
           </View>
         </View>
         <View style={styles.taskInfocontent}>
           <Text style={styles.completedTasksText}>Concluídas </Text>
           <View style={styles.tasksCounterContainer}>
-            <Text style={styles.tasksCounter}>2</Text>
+            <Text style={styles.tasksCounter}>{completedTasksCounter}</Text>
           </View>
         </View>
       </View>
@@ -50,7 +68,11 @@ export function Home() {
         data={tasks}
         keyExtractor={(item) => item.description}
         renderItem={({ item }) => (
-          <Task key={item.description} description={item.description} />
+          <Task
+            key={item.description}
+            description={item.description}
+            onCompleteTask={handleTaskStatus}
+          />
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (

@@ -6,12 +6,14 @@ import { styles } from "./styles";
 
 type TaskProps = {
   description: string;
+  onCompleteTask: (description: string) => void;
 };
 
-export function Task({ description }: TaskProps) {
+export function Task({ description, onCompleteTask }: TaskProps) {
   const [taskCompleted, setTaskCompleted] = useState(false);
 
-  function handleSetTaskCompleted() {
+  function handleSetTaskCompleted(taskDescription: string) {
+    onCompleteTask(taskDescription);
     setTaskCompleted(!taskCompleted);
   }
 
@@ -26,7 +28,7 @@ export function Task({ description }: TaskProps) {
         iconStyle={{ borderColor: "red" }}
         innerIconStyle={{ borderWidth: 2 }}
         isChecked={taskCompleted}
-        onPress={handleSetTaskCompleted}
+        onPress={() => handleSetTaskCompleted(description)}
       />
 
       <TouchableOpacity>
