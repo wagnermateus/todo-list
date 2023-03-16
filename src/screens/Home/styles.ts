@@ -40,7 +40,25 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#D9D9D9",
   },
-  tasks: {
-    gap: 8,
+  listEmpty: {
+    width: 327,
+    borderTopWidth: 1,
+    borderTopColor: "#333333",
+    alignItems: "center",
+    gap: 16,
+  },
+
+  listEmptyText: {
+    color: "#808080",
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  listEmptyTextBold: {
+    color: "#808080",
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  clipboard: {
+    marginTop: 48,
   },
 });

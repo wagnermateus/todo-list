@@ -11,5 +11,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#262626",
+    marginBottom: 8,
   },
 });
