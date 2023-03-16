@@ -4,7 +4,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { styles } from "./styles";
 
-export function Task() {
+type TaskProps = {
+  description: string;
+};
+
+export function Task({ description }: TaskProps) {
   const [taskCompleted, setTaskCompleted] = useState(false);
 
   function handleSetTaskCompleted() {
@@ -17,7 +21,7 @@ export function Task() {
         size={24}
         fillColor={taskCompleted ? "#5E60CE" : "#4EA8DE"}
         unfillColor="transparent"
-        text=" Integer urna interdum massa libero auctor neque turpis turpis semper."
+        text={description}
         textStyle={{ color: "#f2f2f2", fontSize: 14, maxWidth: 235 }}
         iconStyle={{ borderColor: "red" }}
         innerIconStyle={{ borderWidth: 2 }}
