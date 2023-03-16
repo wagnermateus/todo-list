@@ -28,7 +28,7 @@ export function Home() {
   }
 
   function handleTaskStatus(description: string) {
-    const newTasksArry = tasks.map((task) => {
+    const newTasksArray = tasks.map((task) => {
       if (task.description === description) {
         if (task.status === "todo") task.status = "done";
         else {
@@ -38,9 +38,25 @@ export function Home() {
       }
       return task;
     });
-    setTasks(newTasksArry);
+    setTasks(newTasksArray);
   }
-
+  function handleTaskRemove(description: string) {
+    const newTasksArray = tasks.filter(
+      (task) => task.description !== description
+    );
+    Alert.alert("Eliminar", "Deseja eliminar esta tarefa?", [
+      {
+        text: "sim",
+        onPress: () => {
+          setTasks(newTasksArray);
+        },
+      },
+      {
+        text: "não",
+        style: "cancel",
+      },
+    ]);
+  }
   const completedTasksCounter = tasks.filter(
     (task) => task.status === "done"
   ).length;
@@ -72,6 +88,7 @@ export function Home() {
             key={item.description}
             description={item.description}
             onCompleteTask={handleTaskStatus}
+            onRemoveTask={handleTaskRemove}
           />
         )}
         showsVerticalScrollIndicator={false}

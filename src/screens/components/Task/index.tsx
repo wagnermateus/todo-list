@@ -7,9 +7,10 @@ import { styles } from "./styles";
 type TaskProps = {
   description: string;
   onCompleteTask: (description: string) => void;
+  onRemoveTask: (description: string) => void;
 };
 
-export function Task({ description, onCompleteTask }: TaskProps) {
+export function Task({ description, onCompleteTask, onRemoveTask }: TaskProps) {
   const [taskCompleted, setTaskCompleted] = useState(false);
 
   function handleSetTaskCompleted(taskDescription: string) {
@@ -31,7 +32,7 @@ export function Task({ description, onCompleteTask }: TaskProps) {
         onPress={() => handleSetTaskCompleted(description)}
       />
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onRemoveTask(description)}>
         <MaterialCommunityIcons
           name="trash-can-outline"
           size={22}
